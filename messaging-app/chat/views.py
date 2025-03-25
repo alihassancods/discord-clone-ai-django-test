@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from .models import Message
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -20,3 +20,6 @@ def send_message(request):
 def get_messages(request):
     messages = Message.objects.all().values('id', 'user', 'content')
     return JsonResponse(list(messages), safe=False)
+
+def homepage(request):
+    return HttpResponse("Hello World")
